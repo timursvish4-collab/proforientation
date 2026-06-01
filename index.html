@@ -2,374 +2,66 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ПрофОриентир — выбор профессии и вуза</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПрофОриентир — главная</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7fc;
-            color: #1e2a3e;
-            line-height: 1.5;
-        }
-
-        /* Адаптивный контейнер */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Шапка */
-        header {
-            background: linear-gradient(135deg, #0b3b5f 0%, #1b5a8c 100%);
-            color: white;
-            padding: 1.5rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-        }
-        .logo p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        nav {
-            margin-top: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        nav a:hover {
-            text-decoration: underline;
-            opacity: 0.8;
-        }
-
-        /* Основные блоки */
-        section {
-            background: white;
-            border-radius: 20px;
-            padding: 1.8rem;
-            margin: 2rem 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            color: #0b3b5f;
-            border-left: 5px solid #2c7ab1;
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        h3 {
-            margin: 1rem 0 0.5rem;
-            color: #1e4663;
-        }
-
-        /* Карточки тестов */
-        .test-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .test-card {
-            background: #f9fafc;
-            border-radius: 16px;
-            padding: 1.2rem;
-            flex: 1;
-            min-width: 250px;
-            border: 1px solid #e2e8f0;
-        }
-        .test-card h3 {
-            margin-top: 0;
-        }
-        button {
-            background: #2c7ab1;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            transition: 0.2s;
-        }
-        button:hover {
-            background: #1a5a85;
-        }
-        .test-result {
-            background: #eef2f5;
-            margin-top: 12px;
-            padding: 10px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-
-        /* Таблица вузов */
-        .filter-bar {
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-        }
-        .filter-bar input, .filter-bar select {
-            padding: 8px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 30px;
-            font-size: 0.9rem;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            overflow-x: auto;
-            display: block;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-        }
-        th {
-            background: #e6f0f9;
-            position: sticky;
-            top: 0;
-        }
-        @media (max-width: 700px) {
-            th, td { font-size: 0.8rem; padding: 6px; }
-        }
-
-        /* Калькулятор ЕГЭ */
-        .calculator {
-            background: #eef2fa;
-            padding: 1.2rem;
-            border-radius: 20px;
-        }
-        .calc-inputs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 15px 0;
-        }
-        .calc-inputs label {
-            font-weight: bold;
-        }
-        .calc-inputs input {
-            width: 80px;
-            padding: 6px;
-            border-radius: 12px;
-            border: 1px solid #ccc;
-        }
-        .result-list {
-            background: white;
-            border-radius: 16px;
-            padding: 1rem;
-            margin-top: 15px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        /* Статьи */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.2rem;
-        }
-        .article-card {
-            background: #fefefe;
-            border-radius: 16px;
-            padding: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e9ecef;
-        }
-        .article-card h4 {
-            color: #0b5e7e;
-        }
-
-        /* Вопрос-ответ */
-        .qa-form textarea, .qa-form input {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 12px;
-            border: 1px solid #ccc;
-        }
-        .qa-list {
-            margin-top: 25px;
-        }
-        .qa-item {
-            background: #f9f9ff;
-            margin: 8px 0;
-            padding: 12px;
-            border-radius: 14px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #0f2c3f;
-            color: #ccc;
-            margin-top: 2rem;
-        }
-        @media (max-width: 700px) {
-            nav a { margin-left: 0.8rem; font-size: 0.9rem; }
-            .logo h1 { font-size: 1.4rem; }
-        }
+        /* все стили как выше */
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:'Roboto',sans-serif;background:#f4f7fc;color:#1e2a3e;line-height:1.5;}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px;}
+        header{background:linear-gradient(135deg,#0b3b5f,#1b5a8c);color:#fff;padding:1.5rem 0;}
+        .header-content{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;}
+        .logo h1{font-size:1.8rem;}
+        nav a{color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:500;}
+        nav a:hover{text-decoration:underline;}
+        section{background:#fff;border-radius:20px;padding:1.8rem;margin:2rem 0;box-shadow:0 8px 20px rgba(0,0,0,0.05);}
+        h2{color:#0b3b5f;border-left:5px solid #2c7ab1;padding-left:1rem;margin-bottom:1.5rem;}
+        .test-cards{display:flex;flex-wrap:wrap;gap:1.5rem;}
+        .test-card{background:#f9fafc;border-radius:16px;padding:1.2rem;flex:1;min-width:250px;border:1px solid #e2e8f0;}
+        button{background:#2c7ab1;color:#fff;border:none;padding:8px 18px;border-radius:40px;cursor:pointer;}
+        .test-result{background:#eef2f5;margin-top:12px;padding:10px;border-radius:12px;}
+        .filter-bar{margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;}
+        .filter-bar input,.filter-bar select{padding:8px 12px;border-radius:30px;border:1px solid #cbd5e1;}
+        .table-wrapper{overflow-x:auto;}
+        table{width:100%;border-collapse:collapse;}
+        th,td{border:1px solid #ddd;padding:10px;text-align:left;}
+        th{background:#e6f0f9;}
+        .calculator{background:#eef2fa;padding:1.2rem;border-radius:20px;}
+        .calc-inputs{display:flex;flex-wrap:wrap;gap:15px;margin:15px 0;}
+        .calc-inputs label{font-weight:bold;display:inline-flex;align-items:center;gap:6px;}
+        .calc-inputs input{width:70px;padding:6px;border-radius:12px;border:1px solid #ccc;}
+        .result-list{background:#fff;border-radius:16px;padding:1rem;margin-top:15px;max-height:300px;overflow-y:auto;}
+        .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;}
+        .article-card{background:#fefefe;border-radius:16px;padding:1rem;border:1px solid #e9ecef;}
+        .article-card h4 a{color:#0b5e7e;text-decoration:none;}
+        .qa-form textarea,.qa-form input{width:100%;margin:10px 0;padding:10px;border-radius:12px;border:1px solid #ccc;}
+        .qa-item{background:#f9f9ff;margin:8px 0;padding:12px;border-radius:14px;}
+        footer{text-align:center;padding:2rem;background:#0f2c3f;color:#ccc;}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:1000;}
+        .modal-content{background:#fff;max-width:500px;width:90%;border-radius:28px;padding:1.5rem;max-height:80vh;overflow-y:auto;}
+        .modal-options{display:flex;gap:20px;margin-top:10px;}
+        .progress{font-size:0.85rem;color:#2c7ab1;margin-bottom:10px;}
     </style>
 </head>
 <body>
 <header>
     <div class="container header-content">
-        <div class="logo">
-            <h1>ПрофОриентир</h1>
-            <p>Выбери профессию и вуз осознанно</p>
-        </div>
-        <nav>
-            <a href="#home">Главная</a>
-            <a href="#tests">Тесты</a>
-            <a href="#universities">Вузы</a>
-            <a href="#calculator">Калькулятор ЕГЭ</a>
-            <a href="#articles">Статьи</a>
-            <a href="#qa">Вопрос-ответ</a>
-        </nav>
+        <div class="logo"><h1>ПрофОриентир</h1><p>Выбери профессию и вуз осознанно</p></div>
+        <nav><a href="#home">Главная</a><a href="#tests">Тесты</a><a href="#universities">Вузы</a><a href="#calculator">Калькулятор ЕГЭ</a><a href="#articles">Статьи</a><a href="#qa">Вопрос-ответ</a></nav>
     </div>
 </header>
-
 <main class="container">
-    <!-- Главный приветственный блок -->
-    <section id="home">
-        <h2>Помощь в выборе пути</h2>
-        <p>Бесплатный инструмент для школьников: профориентационные тесты, актуальные данные о вузах, калькулятор ЕГЭ и советы. Создано в рамках индивидуального проекта ученика 10 класса.</p>
-        <p style="margin-top:10px;">✅ 3 профтеста (Климов, Голланд, готовность к ЕГЭ)<br>
-        ✅ База 20+ вузов и специальностей с проходными баллами<br>
-        ✅ Калькулятор подбора специальностей по баллам ЕГЭ</p>
-    </section>
-
-    <!-- ТЕСТЫ -->
-    <section id="tests">
-        <h2>Профориентационные тесты</h2>
-        <div class="test-cards">
-            <!-- Тест 1: Климов -->
-            <div class="test-card">
-                <h3>Тест Климова</h3>
-                <p>Тип профессии: человек-человек, техника, природа, знак, искусство.</p>
-                <button onclick="startKlimovTest()">Пройти тест</button>
-                <div id="klimovResult" class="test-result"></div>
-            </div>
-            <!-- Тест 2: Голланд (упрощённый) -->
-            <div class="test-card">
-                <h3>Тест Голланда</h3>
-                <p>Профессиональные интересы (реалистичный, интеллектуальный, социальный и др.)</p>
-                <button onclick="startHollandTest()">Пройти тест</button>
-                <div id="hollandResult" class="test-result"></div>
-            </div>
-            <!-- Тест 3: Готовность к ЕГЭ -->
-            <div class="test-card">
-                <h3>Готовность к ЕГЭ</h3>
-                <p>Оцени свою самоподготовку и планирование.</p>
-                <button onclick="startExamReadinessTest()">Пройти тест</button>
-                <div id="examResult" class="test-result"></div>
-            </div>
-        </div>
-        <p style="font-size:0.85rem; color:#4b6b8a;">*Тесты разработаны на основе методик, вопросы сокращённые для демонстрации.</p>
-    </section>
-
-    <!-- ВУЗЫ И СПЕЦИАЛЬНОСТИ -->
-    <section id="universities">
-        <h2>Вузы и специальности (проходные баллы 2025)</h2>
-        <div class="filter-bar">
-            <input type="text" id="searchVuz" placeholder="Поиск по вузу или специальности" onkeyup="filterTable()">
-            <select id="minScoreFilter" onchange="filterTable()">
-                <option value="0">Любой проходной балл</option>
-                <option value="200">Выше 200</option>
-                <option value="250">Выше 250</option>
-                <option value="280">Выше 280</option>
-            </select>
-        </div>
-        <div style="overflow-x: auto;">
-            <table id="universitiesTable">
-                <thead>
-                    <tr><th>Вуз</th><th>Специальность</th><th>Проходной балл (бюджет)</th><th>Предметы ЕГЭ</th></tr>
-                </thead>
-                <tbody id="tableBody">
-                    <!-- данные будут вставлены через JS -->
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- КАЛЬКУЛЯТОР ЕГЭ -->
-    <section id="calculator">
-        <h2>Калькулятор ЕГЭ</h2>
-        <div class="calculator">
-            <p>Введите свои предполагаемые баллы ЕГЭ (по 100-балльной шкале):</p>
-            <div class="calc-inputs">
-                <label>Русский язык: <input type="number" id="egRussian" min="0" max="100" value="70"></label>
-                <label>Математика (проф): <input type="number" id="egMath" min="0" max="100" value="65"></label>
-                <label>Информатика: <input type="number" id="egInf" min="0" max="100" value="68"></label>
-                <label>Обществознание: <input type="number" id="egSoc" min="0" max="100" value="75"></label>
-                <label>Биология: <input type="number" id="egBio" min="0" max="100" value="60"></label>
-            </div>
-            <button onclick="calculateEge()">Подобрать специальности</button>
-            <div id="egeResult" class="result-list">Результаты появятся здесь</div>
-            <p style="font-size:0.75rem; margin-top:10px;">*Сравнение с проходными баллами из нашей базы (учитываются три профильных предмета).</p>
-        </div>
-    </section>
-
-    <!-- СТАТЬИ -->
-    <section id="articles">
-        <h2>Полезные статьи</h2>
-        <div class="articles-grid">
-            <div class="article-card"><h4>Как выбрать профессию, которая вам подходит</h4><p>Советы по самоанализу, учёт интересов и способностей. Начните с наших тестов!</p></div>
-            <div class="article-card"><h4>Самые востребованные профессии 2025–2030</h4><p>Data scientist, AI-тренер, биоинформатик — какие направления развиваются.</p></div>
-            <div class="article-card"><h4>Как подготовиться к ЕГЭ за год</h4><p>Планирование, ресурсы и психологический настрой.</p></div>
-            <div class="article-card"><h4>Ошибки при выборе вуза и как их избежать</h4><p>Не ориентируйтесь только на престиж, смотрите на программу.</p></div>
-            <div class="article-card"><h4>Интервью с выпускником: от школы до работы мечты</h4><p>Реальный путь: как поменял специальность и нашёл себя.</p></div>
-        </div>
-    </section>
-
-    <!-- ВОПРОС-ОТВЕТ (имитация) -->
-    <section id="qa">
-        <h2>Вопрос-ответ</h2>
-        <div class="qa-form">
-            <input type="text" id="qaName" placeholder="Ваше имя">
-            <textarea id="qaQuestion" rows="3" placeholder="Задайте вопрос о поступлении или профориентации..."></textarea>
-            <button onclick="addQuestion()">Отправить вопрос</button>
-        </div>
-        <div class="qa-list" id="qaList">
-            <div class="qa-item"><strong>Алина:</strong> Какие экзамены нужны на дизайнера?<br><span style="color:#2c7ab1;">Ответ: Обычно русский, литература и творческий конкурс. Смотрите требования вуза.</span></div>
-            <div class="qa-item"><strong>Максим:</strong> Можно ли поступить на IT с обществознанием вместо физики?<br><span style="color:#2c7ab1;">Ответ: В большинстве IT-специальностей нужна физика или информатика, но есть направления (бизнес-информатика), где принимают обществознание.</span></div>
-        </div>
-    </section>
+    <section id="home"><h2>Помощь в выборе пути</h2><p>Бесплатный инструмент для школьников: профориентационные тесты, актуальные данные о вузах, калькулятор ЕГЭ и советы.</p><p>✅ 3 профтеста<br>✅ База 20+ вузов<br>✅ Калькулятор подбора специальностей</p></section>
+    <section id="tests"><h2>Профориентационные тесты</h2><div class="test-cards"><div class="test-card"><h3>Тест Климова</h3><button onclick="startKlimovTest()">Пройти</button><div id="klimovResult" class="test-result"></div></div><div class="test-card"><h3>Тест Голланда</h3><button onclick="startHollandTest()">Пройти</button><div id="hollandResult" class="test-result"></div></div><div class="test-card"><h3>Готовность к ЕГЭ</h3><button onclick="startExamReadinessTest()">Пройти</button><div id="examResult" class="test-result"></div></div></div></section>
+    <section id="universities"><h2>Вузы и специальности</h2><div class="filter-bar"><input type="text" id="searchVuz" placeholder="Поиск" onkeyup="filterTable()"><select id="minScoreFilter" onchange="filterTable()"><option value="0">Любой балл</option><option value="200">≥200</option><option value="250">≥250</option><option value="280">≥280</option></select></div><div class="table-wrapper"><table id="universitiesTable"><thead><tr><th>Вуз</th><th>Специальность</th><th>Проходной балл</th><th>Предметы ЕГЭ</th></tr></thead><tbody id="tableBody"></tbody></table></div></section>
+    <section id="calculator"><h2>Калькулятор ЕГЭ</h2><div class="calculator"><div class="calc-inputs"><label>Русский: <input type="number" id="egRussian" value="70"></label><label>Математика: <input type="number" id="egMath" value="65"></label><label>Информатика: <input type="number" id="egInf" value="68"></label><label>Обществознание: <input type="number" id="egSoc" value="75"></label><label>Биология: <input type="number" id="egBio" value="60"></label><label>Физика: <input type="number" id="egPhys" value="65"></label><label>История: <input type="number" id="egHist" value="60"></label></div><button onclick="calculateEge()">Подобрать</button><div id="egeResult" class="result-list"></div></div></section>
+    <section id="articles"><h2>Полезные статьи</h2><div class="articles-grid" id="articlesGrid"></div></section>
+    <section id="qa"><h2>Вопрос-ответ</h2><div class="qa-form"><input type="text" id="qaName" placeholder="Ваше имя"><textarea id="qaQuestion" rows="3" placeholder="Задайте вопрос..."></textarea><button onclick="addQuestion()">Отправить</button></div><div class="qa-list" id="qaList"><div class="qa-item"><strong>Алина:</strong> Какие экзамены на дизайнера?<br><span style="color:#2c7ab1;">Ответ: русский, литература, творческий конкурс.</span></div></div></section>
 </main>
-<footer>
-    <p>© 2026 ПрофОриентир | Индивидуальный проект ученика 10 класса | Все рекомендации носят информационный характер</p>
-</footer>
-
+<footer><p>© 2026 ПрофОриентир</p></footer>
 <script>
-    // ---------- БАЗА ДАННЫХ ВУЗОВ (20+ записей) ----------
+    // ---------- БАЗА ВУЗОВ ----------
     const universitiesData = [
         { vuz: "ТвГУ", spec: "Прикладная информатика", score: 245, subjects: "Русский, математика, информатика" },
         { vuz: "ТвГУ", spec: "Психология", score: 260, subjects: "Русский, биология, обществознание" },
@@ -392,141 +84,38 @@
         { vuz: "НИУ БелГУ", spec: "Медицинская биохимия", score: 268, subjects: "Русский, биология, химия" },
         { vuz: "КФУ", spec: "Программирование", score: 250, subjects: "Русский, математика, информатика" }
     ];
-
-    function renderUniversityTable(filterText = "", minScore = 0) {
-        let filtered = [...universitiesData];
-        if (filterText) {
-            filtered = filtered.filter(item => item.vuz.toLowerCase().includes(filterText) || item.spec.toLowerCase().includes(filterText));
-        }
-        if (minScore > 0) {
-            filtered = filtered.filter(item => item.score >= minScore);
-        }
-        const tbody = document.getElementById("tableBody");
-        tbody.innerHTML = "";
-        filtered.forEach(u => {
-            const row = tbody.insertRow();
-            row.insertCell(0).innerText = u.vuz;
-            row.insertCell(1).innerText = u.spec;
-            row.insertCell(2).innerText = u.score;
-            row.insertCell(3).innerText = u.subjects;
-        });
-        if(filtered.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='4'>Нет вузов, соответствующих фильтру</td></tr>";
-        }
-    }
-
-    function filterTable() {
-        const searchVal = document.getElementById("searchVuz").value.toLowerCase();
-        const scoreFilter = parseInt(document.getElementById("minScoreFilter").value);
-        renderUniversityTable(searchVal, scoreFilter);
-    }
-
-    // --- ТЕСТ КЛИМОВА (имитация, 3 вопроса для наглядности, но рабочая логика)
-    function startKlimovTest() {
-        let q1 = prompt("1. Вам нравится работать с людьми (обучать, лечить, обслуживать)? (да/нет)");
-        let q2 = prompt("2. Вам интересны техника, механизмы, ремонт? (да/нет)");
-        let q3 = prompt("3. Вы предпочитаете работать с текстами, цифрами, схемами? (да/нет)");
-        let result = "По вашим ответам: ";
-        if(q1?.toLowerCase() === "да") result += "подходит сфера 'человек-человек' (педагог, врач, менеджер). ";
-        if(q2?.toLowerCase() === "да") result += "интересы в области 'человек-техника' (инженер, механик). ";
-        if(q3?.toLowerCase() === "да") result += "склонность к знаковым системам (программист, аналитик). ";
-        if(!q1 && !q2 && !q3) result = "Пожалуйста, ответьте на вопросы (да/нет).";
-        document.getElementById("klimovResult").innerHTML = result;
-    }
-
-    // Тест Голланда (упрощённо)
-    function startHollandTest() {
-        let answers = [];
-        let txt = "Оцените утверждения от 1 до 3 (1 - нет, 3 - полностью согласен):\n";
-        let q1 = prompt(txt + "Мне нравится ремонтировать технику, работать руками.");
-        let q2 = prompt("Мне нравится исследовать, анализировать, решать научные задачи.");
-        let q3 = prompt("Я люблю помогать людям, учить, консультировать.");
-        let res = "Ваши предпочтения: ";
-        if(parseInt(q1) >= 2) res += "Реалистичный тип (технические профессии). ";
-        if(parseInt(q2) >= 2) res += "Интеллектуальный тип (исследователь, аналитик). ";
-        if(parseInt(q3) >= 2) res += "Социальный тип (образование, медицина). ";
-        document.getElementById("hollandResult").innerHTML = res || "Ответы не распознаны, попробуйте с цифрами.";
-    }
-
+    function renderUniversityTable(f="", min=0){let filt=universitiesData.filter(u=>(!f||u.vuz.toLowerCase().includes(f)||u.spec.toLowerCase().includes(f))&&(!min||u.score>=min));document.getElementById("tableBody").innerHTML=filt.map(u=>`<tr><td>${u.vuz}</td><td>${u.spec}</td><td>${u.score}</td><td>${u.subjects}</td></tr>`).join("")||"<tr><td colspan='4'>Нет вузов</td></tr>";}
+    function filterTable(){renderUniversityTable(document.getElementById("searchVuz").value.toLowerCase(),parseInt(document.getElementById("minScoreFilter").value));}
+    // ---------- ТЕСТ КЛИМОВА ----------
+    const klimovQuestions=["1. а) Ухаживать за животными б) Обслуживать машины","2. а) Помогать больным б) Составлять таблицы","3. а) Оформлять книги б) Следить за растениями","4. а) Обрабатывать материалы б) Продавать товары","5. а) Обсуждать научные книги б) Обсуждать художественные","6. а) Содержать животных б) Тренировать","7. а) Копировать рисунки б) Управлять краном","8. а) Сообщать людям сведения б) Оформлять выставки","9. а) Ремонтировать вещи б) Искать ошибки","10. а) Лечить животных б) Выполнять расчёты","11. а) Выводить сорта растений б) Конструировать","12. а) Разрешать споры б) Разбираться в схемах","13. а) Участвовать в самодеятельности б) Изучать микробов","14. а) Налаживать медприборы б) Оказывать медпомощь","15. а) Составлять отчёты б) Описывать события","16. а) Лабораторные анализы б) Принимать больных","17. а) Красить стены б) Монтаж зданий","18. а) Организовывать экскурсии б) Играть на сцене","19. а) Изготавливать детали б) Чертить","20. а) Борьба с болезнями растений б) Работа на клавиатуре"];
+    const klimovKey={"Человек – Природа":[1,3,6,10,11,13,16,20].map(n=>({num:n,ans:'a'})),"Человек – Техника":[1,4,7,9,11,14,17,19].map(n=>({num:n,ans:'b'})),"Человек – Человек":[2,4,6,8,12,14,16,18].map(n=>({num:n,ans:'a'})),"Человек – Знаковая система":[2,5,9,10,12,15,19,20].map(n=>({num:n,ans:'b'})),"Человек – Художественный образ":[3,5,7,8,13,15,17,18].map(n=>({num:n,ans:'a'}))};
+    let currentKlimov={index:0,answers:[]};
+    function startKlimovTest(){currentKlimov={index:0,answers:new Array(20).fill(null)};showKlimovModal();}
+    function showKlimovModal(){let m=document.getElementById('klimovModal');if(!m)createModal('klimov');document.getElementById('klimovModal').style.display='flex';renderKlimovQuestion();}
+    function renderKlimovQuestion(){let idx=currentKlimov.index;document.getElementById('klimovModalQuestion').innerHTML=`<div class="progress">Вопрос ${idx+1} из 20</div><div>${klimovQuestions[idx]}</div>`;let a=currentKlimov.answers[idx];document.getElementById('klimovOptA').checked=(a==='a');document.getElementById('klimovOptB').checked=(a==='b');}
+    function saveKlimovAnswer(){let ans=document.getElementById('klimovOptA').checked?'a':(document.getElementById('klimovOptB').checked?'b':null);if(ans)currentKlimov.answers[currentKlimov.index]=ans;if(currentKlimov.index<19){currentKlimov.index++;renderKlimovQuestion();}else{finishKlimovTest();}}
+    function finishKlimovTest(){document.getElementById('klimovModal').style.display='none';let scores={"Человек – Природа":0,"Человек – Техника":0,"Человек – Человек":0,"Человек – Знаковая система":0,"Человек – Художественный образ":0};for(let i=0;i<currentKlimov.answers.length;i++){let ans=currentKlimov.answers[i];if(!ans)continue;let q=i+1;for(let[t,items]of Object.entries(klimovKey))if(items.some(it=>it.num===q&&it.ans===ans))scores[t]++;}let res=`Результаты (макс 8):<br>`;for(let[t,v]of Object.entries(scores))res+=`${t}: ${v}<br>`;let max=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);res+=`<br>${scores[max]>=6?`Ярко выражен "${max}".`:scores[max]>=4?`Умеренная склонность к "${max}".`:"Интересы разносторонние."}`;document.getElementById("klimovResult").innerHTML=res;}
+    // ---------- ТЕСТ ГОЛЛАНДА (упрощённая версия, но рабочая) ----------
+    const hollandPairs=["1. Инженер-техник (А)/Инженер-конструктор (Б)","2. Вязальщик (А)/Санитарный врач (Б)","3. Повар (А)/Наборщик (Б)","4. Фотограф (А)/Заведующий магазином (Б)","5. Чертежник (А)/Дизайнер (Б)","6. Философ (А)/Психиатр (Б)","7. Учёный-химик (А)/Бухгалтер (Б)","8. Редактор (А)/Адвокат (Б)","9. Лингвист (А)/Переводчик (Б)","10. Педиатр (А)/Статистик (Б)","11. Организатор (А)/Председатель профсоюза (Б)","12. Спортивный врач (А)/Журналист (Б)","13. Нотариус (А)/Снабженец (Б)","14. Завканцелярией (А)/Карикатурист (Б)","15. Политик (А)/Писатель (Б)","16. Садовник (А)/Метеоролог (Б)","17. Водитель (А)/Медсестра (Б)","18. Инженер-электрик (А)/Секретарь (Б)","19. Маляр (А)/Художник по металлу (Б)","20. Биолог (А)/Главврач (Б)","21. Телеоператор (А)/Режиссёр (Б)","22. Гидролог (А)/Ревизор (Б)","23. Зоолог (А)/Зоотехник (Б)","24. Математик (А)/Архитектор (Б)","25. Соцработник (А)/Счетовод (Б)","26. Учитель (А)/Командир (Б)","27. Воспитатель (А)/Художник (Б)","28. Экономист (А)/Завотделом (Б)","29. Корректор (А)/Критик (Б)","30. Завхоз (А)/Директор (Б)","31. Радиоинженер (А)/Ядерщик (Б)","32. Наладчик (А)/Наборщик (Б)","33. Агроном (А)/Председатель (Б)","34. Закройщик (А)/Декоратор (Б)","35. Археолог (А)/Эксперт (Б)","36. Работник музея (А)/Консультант (Б)","37. Учёный (А)/Актёр (Б)","38. Логопед (А)/Стенографист (Б)","39. Врач (А)/Дипломат (Б)","40. Главбух (А)/Директор (Б)","41. Поэт (А)/Психолог (Б)","42. Архивариус (А)/Скульптор (Б)"];
+    const hollandKey={"Реалистический":[1,2,3,4,5,16,17,18,19,21,31,32,33,34].map(n=>({num:n,ans:'a'})),"Интеллектуальный":[1,6,7,8,9,16,20,22,23,24,31,35,36,37].map(n=>({num:n,ans:'b'})),"Социальный":[2,6,10,11,12,17,25,26,27,36,38,39,41].map(n=>({num:n,ans:'b'})),"Конвенциальный":[3,7,10,13,14,18,22,25,28,29,32,38,40,42].map(n=>({num:n,ans:'a'})),"Предприимчивый":[4,8,11,13,15,23,28,30,33,35,37,39,40].map(n=>({num:n,ans:'b'})),"Артистический":[5,9,12,14,15,19,21,24,27,30,34,41,42].map(n=>({num:n,ans:'b'}))};
+    let currentHolland={index:0,answers:[]};
+    function startHollandTest(){currentHolland={index:0,answers:new Array(42).fill(null)};showHollandModal();}
+    function showHollandModal(){let m=document.getElementById('hollandModal');if(!m)createModal('holland');document.getElementById('hollandModal').style.display='flex';renderHollandQuestion();}
+    function renderHollandQuestion(){let idx=currentHolland.index;document.getElementById('hollandModalQuestion').innerHTML=`<div class="progress">Вопрос ${idx+1} из 42</div><div>${hollandPairs[idx]}</div>`;let a=currentHolland.answers[idx];document.getElementById('hollandOptA').checked=(a==='a');document.getElementById('hollandOptB').checked=(a==='b');}
+    function saveHollandAnswer(){let ans=document.getElementById('hollandOptA').checked?'a':(document.getElementById('hollandOptB').checked?'b':null);if(ans)currentHolland.answers[currentHolland.index]=ans;if(currentHolland.index<41){currentHolland.index++;renderHollandQuestion();}else{finishHollandTest();}}
+    function finishHollandTest(){document.getElementById('hollandModal').style.display='none';let scores={Реалистический:0,Интеллектуальный:0,Социальный:0,Конвенциальный:0,Предприимчивый:0,Артистический:0};for(let i=0;i<currentHolland.answers.length;i++){let ans=currentHolland.answers[i];if(!ans)continue;let q=i+1;for(let[t,items]of Object.entries(hollandKey))if(items.some(it=>it.num===q&&it.ans===ans))scores[t]++;}let res=`<strong>Типы по Голланду (макс 14):</strong><br>`;for(let[t,v]of Object.entries(scores))res+=`${t}: ${v}<br>`;let max=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);let profMap={Реалистический:"механик, инженер",Интеллектуальный:"учёный, аналитик",Социальный:"врач, учитель",Конвенциальный:"бухгалтер",Предприимчивый:"менеджер",Артистический:"дизайнер"};res+=`<br>Ведущий тип: <strong>${max}</strong>. Рекомендуемые профессии: ${profMap[max]}`;document.getElementById("hollandResult").innerHTML=res;}
+    // Общая функция модалок
+    function createModal(type){let d=document.createElement('div');d.id=`${type}Modal`;d.className='modal';d.innerHTML=`<div class="modal-content"><div id="${type}ModalQuestion"></div><div class="modal-options"><label><input type="radio" name="${type}Opt" id="${type}OptA" value="a"> Вариант А</label><label><input type="radio" name="${type}Opt" id="${type}OptB" value="b"> Вариант Б</label></div><div class="modal-buttons"><button onclick="save${type.charAt(0).toUpperCase()+type.slice(1)}Answer()">Далее</button></div></div>`;document.body.appendChild(d);}
     // Тест готовности к ЕГЭ
-    function startExamReadinessTest() {
-        let score = 0;
-        let q1 = prompt("Сколько часов в неделю вы готовитесь к ЕГЭ? (0-10+)", "3");
-        let q2 = prompt("У вас есть чёткий план подготовки? (да/частично/нет)");
-        let q3 = prompt("Вы пользуетесь онлайн-тренажёрами? (да/нет)");
-        if(parseInt(q1) >= 6) score += 40;
-        else if(parseInt(q1) > 0) score += 20;
-        if(q2?.toLowerCase() === "да") score += 35;
-        else if(q2?.toLowerCase() === "частично") score += 15;
-        if(q3?.toLowerCase() === "да") score += 25;
-        let resultText = `Ваш уровень готовности: ${score} баллов. `;
-        if(score > 70) resultText += "Отлично! Продолжайте в том же духе.";
-        else if(score > 40) resultText += "Средний уровень. Увеличьте системность подготовки.";
-        else resultText += "Низкий уровень. Начните с составления плана.";
-        document.getElementById("examResult").innerHTML = resultText;
-    }
-
-    // Калькулятор ЕГЭ (сравнение с базой специальностей)
-    function calculateEge() {
-        const rus = parseInt(document.getElementById("egRussian").value) || 0;
-        const math = parseInt(document.getElementById("egMath").value) || 0;
-        const inf = parseInt(document.getElementById("egInf").value) || 0;
-        const soc = parseInt(document.getElementById("egSoc").value) || 0;
-        const bio = parseInt(document.getElementById("egBio").value) || 0;
-
-        // Для каждой специальности в базе определим подходящий набор из трёх предметов.
-        const specializations = universitiesData.map(item => {
-            // Определим, какие предметы профильные для специальности
-            let required = [];
-            if (item.subjects.includes("информатика")) required = ["inf", "math", "rus"];
-            else if (item.subjects.includes("физика")) required = ["phys", "math", "rus"];
-            else if (item.subjects.includes("обществознание")) required = ["soc", "rus", "math"];
-            else if (item.subjects.includes("биология")) required = ["bio", "rus", "math"];
-            else if (item.subjects.includes("история")) required = ["hist", "rus", "soc"];
-            else required = ["rus", "math", "inf"]; // fallback
-
-            let totalUser = 0;
-            let possible = true;
-            // для упрощения используем три предмета: русский всегда, математика, и третий по логике
-            // сделаем универсально: смотрим есть ли обязательный третий
-            let thirdScore = 0;
-            if(required.includes("inf")) thirdScore = inf;
-            else if(required.includes("soc")) thirdScore = soc;
-            else if(required.includes("bio")) thirdScore = bio;
-            else if(required.includes("phys")) thirdScore = math; // физику заменяем на математику как прокси, но корректнее остановимся
-            else thirdScore = math;
-
-            totalUser = rus + math + thirdScore;
-            return { ...item, userTotal: totalUser, requiredScore: item.score, possible: totalUser >= item.score };
-        });
-        const suitable = specializations.filter(s => s.possible === true).slice(0, 12);
-        let html = "<strong>Подходящие направления (ваши баллы ≥ проходному):</strong><ul>";
-        if(suitable.length === 0) html += "<li>К сожалению, с данными баллами нет точных совпадений. Рассмотрите повышение баллов или другие специальности.</li>";
-        else {
-            suitable.forEach(s => {
-                html += `<li><b>${s.vuz}</b> – ${s.spec} (проходной ${s.requiredScore}, ваша сумма ~${s.userTotal})</li>`;
-            });
-        }
-        html += "</ul><small>*Калькулятор учитывает три ключевых ЕГЭ (русский, математика, профильный предмет).";
-        document.getElementById("egeResult").innerHTML = html;
-    }
-
-    // Вопрос-ответ (простое добавление)
-    function addQuestion() {
-        const name = document.getElementById("qaName").value.trim();
-        const question = document.getElementById("qaQuestion").value.trim();
-        if(!question) { alert("Напишите вопрос"); return; }
-        const qaDiv = document.getElementById("qaList");
-        const newItem = document.createElement("div");
-        newItem.className = "qa-item";
-        newItem.innerHTML = `<strong>${name || "Аноним"}:</strong> ${question}<br><span style="color:#2c7ab1;">Ответ будет опубликован в ближайшее время (администратор).</span>`;
-        qaDiv.prepend(newItem);
-        document.getElementById("qaQuestion").value = "";
-        document.getElementById("qaName").value = "";
-    }
-
-    // Инициализация таблицы
-    renderUniversityTable("", 0);
+    function startExamReadinessTest(){let s=0;let q1=prompt("Сколько часов в неделю готовитесь? (0-10+)","3");let q2=prompt("Есть чёткий план? (да/частично/нет)");let q3=prompt("Пользуетесь тренажёрами? (да/нет)");if(parseInt(q1)>=6)s+=40;else if(parseInt(q1)>0)s+=20;if(q2?.toLowerCase()==="да")s+=35;else if(q2?.toLowerCase()==="частично")s+=15;if(q3?.toLowerCase()==="да")s+=25;let txt=`Готовность: ${s} баллов. `;if(s>70)txt+="Отлично!";else if(s>40)txt+="Средний уровень.";else txt+="Низкий уровень.";document.getElementById("examResult").innerHTML=txt;}
+    // Калькулятор ЕГЭ
+    function calculateEge(){let rus=+document.getElementById("egRussian").value||0,math=+document.getElementById("egMath").value||0,inf=+document.getElementById("egInf").value||0,soc=+document.getElementById("egSoc").value||0,bio=+document.getElementById("egBio").value||0,phys=+document.getElementById("egPhys").value||0,hist=+document.getElementById("egHist").value||0;let suitable=[];for(let u of universitiesData){let third=0,subj=u.subjects.toLowerCase();if(subj.includes("информатика"))third=inf;else if(subj.includes("физика"))third=phys;else if(subj.includes("обществознание"))third=soc;else if(subj.includes("биология"))third=bio;else if(subj.includes("история"))third=hist;else third=math;let total=rus+math+third;if(total>=u.score)suitable.push({...u,userTotal:total});}suitable.sort((a,b)=>b.userTotal-a.userTotal);let html="<strong>Подходящие направления:</strong><ul>";if(!suitable.length)html+="<li>Нет совпадений.</li>";else suitable.slice(0,12).forEach(s=>{html+=`<li><b>${s.vuz}</b> – ${s.spec} (проходной ${s.score}, ваша сумма ${s.userTotal})</li>`;});html+="</ul>";document.getElementById("egeResult").innerHTML=html;}
+    // Вопрос-ответ
+    function addQuestion(){let name=document.getElementById("qaName").value.trim(),q=document.getElementById("qaQuestion").value.trim();if(!q){alert("Введите вопрос");return;}let div=document.createElement("div");div.className="qa-item";div.innerHTML=`<strong>${name||"Аноним"}:</strong> ${q}<br><span style="color:#2c7ab1;">Ответ будет опубликован.</span>`;document.getElementById("qaList").prepend(div);document.getElementById("qaQuestion").value="";document.getElementById("qaName").value="";}
+    // Генерация списка статей
+    const articlesList=[{id:1,title:"Как выбрать профессию",desc:"Советы по самоанализу, учёт интересов."},{id:2,title:"Востребованные профессии 2025-2030",desc:"Data scientist, AI-тренер, биоинформатик."},{id:3,title:"Как подготовиться к ЕГЭ за год",desc:"Планирование, ресурсы и настрой."},{id:4,title:"Ошибки при выборе вуза",desc:"Не ориентируйтесь только на престиж."},{id:5,title:"Интервью с выпускником",desc:"Реальный путь смены специальности."}];
+    function renderArticles(){document.getElementById("articlesGrid").innerHTML=articlesList.map(a=>`<div class="article-card"><h4><a href="article.html?id=${a.id}">${a.title}</a></h4><p>${a.desc}</p></div>`).join('');}
+    renderUniversityTable("",0); renderArticles();
 </script>
 </body>
 </html>
